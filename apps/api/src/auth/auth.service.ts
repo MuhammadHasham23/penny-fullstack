@@ -39,16 +39,13 @@ export class AuthService {
       throw new NotFoundException('User with this email does not exist');
     }
 
-    // Generate a token
     const resetToken = crypto.randomBytes(32).toString('hex');
 
-    // Set token and expiration on the user document
     user.resetPasswordToken = resetToken;
     user.resetPasswordExpires = new Date(Date.now() + 3600000); // Token valid for 1 hour
 
     await user.save();
 
-    // Send email with token
     await this.sendResetEmail(user.email, resetToken);
   }
 
@@ -57,7 +54,7 @@ export class AuthService {
       service: 'gmail',
       auth: {
         user: 'muhammadhasham2311@gmail.com',
-        pass: 'your-email-password',
+        pass: 'rjxx cuka qxjw gcbx',
       },
     });
 
