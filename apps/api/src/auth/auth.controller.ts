@@ -37,4 +37,17 @@ export class AuthController {
     res.clearCookie('jwt', { httpOnly: true });
     return res.status(200).json({ message: 'Signed out successfully' });
   }
+
+  @Post('forgot-password')
+  async forgotPassword(@Body('email') email: string): Promise<void> {
+    return this.authService.requestPasswordReset(email);
+  }
+
+  @Post('reset-password')
+  async resetPassword(
+    @Body('token') token: string,
+    @Body('password') newPassword: string,
+  ): Promise<void> {
+    return this.authService.resetPassword(token, newPassword);
+  }
 }
