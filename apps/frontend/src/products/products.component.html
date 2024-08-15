@@ -1,0 +1,23 @@
+<div class="header">
+    <button class="signout-button" (click)="signOut()">Sign Out</button>
+  </div>
+  
+  <div *ngIf="products$ | async as products">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -77,7 +77,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/frontend/jest.config.ts"
+        "jestConfig": "frontend/jest.config.ts"
       }
     },
     "server": {
@@ -85,8 +85,8 @@
       "executor": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/frontend/server",
-        "main": "apps/frontend/server.ts",
-        "tsConfig": "apps/frontend/tsconfig.server.json",
+        "main": "frontend/server.ts",
+        "tsConfig": "frontend/tsconfig.server.json",
         "inlineStyleLanguage": "scss"
       },
       "configurations": {

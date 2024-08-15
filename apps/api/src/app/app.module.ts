@@ -3,10 +3,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from '../auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://test:test@cluster0.vib3n.mongodb.net/'),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     AuthModule,
   ],
   controllers: [AppController],

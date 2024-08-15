@@ -6,10 +6,11 @@ import * as crypto from 'crypto';
 import * as bcrypt from 'bcryptjs';
 import * as nodemailer from 'nodemailer';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>, private jwtService: JwtService) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>, private jwtService: JwtService, private configService: ConfigService) {}
 
   async register(username: string, email: string, password: string): Promise<User> {
     const existingUser = await this.userModel.findOne({ email });
@@ -54,7 +55,7 @@ export class AuthService {
       service: 'gmail',
       auth: {
         user: 'muhammadhasham2311@gmail.com',
-        pass: 'rjxx cuka qxjw gcbx',
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
 
@@ -81,7 +82,6 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('Invalid or expired password reset token');
     }
-
     // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
